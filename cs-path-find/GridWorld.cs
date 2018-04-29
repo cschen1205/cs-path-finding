@@ -10,7 +10,7 @@ namespace PathFinding
     {
         private QuadTree space;
         private int[] s;
-        private List<WeightedEdge>[] adj;
+        private List<DirectedWeightedEdge>[] adj;
         private int V;
         private int colCount;
         private int rowCount;
@@ -36,7 +36,7 @@ namespace PathFinding
             for(int i=0; i < V; ++i)
             {
                 s[i] = i;
-                adj[i] = new List<WeightedEdge>();
+                adj[i] = new List<DirectedWeightedEdge>();
             }
 
             for(int i=0; i < this.rowCount; ++i)
@@ -63,7 +63,7 @@ namespace PathFinding
 
         private bool IsConnected(int v, int w)
         {
-            foreach (WeightedEdge edge in adj[v])
+            foreach (DirectedWeightedEdge edge in adj[v])
             {
                 if (edge.Other(v) == w)
                 {
@@ -89,9 +89,11 @@ namespace PathFinding
         public void Connect(int v, int w)
         {
             if (IsConnected(w, v)) return;
-            WeightedEdge edge = new WeightedEdge(v, w, GetDistance(v, w));
-            adj[w].Add(edge);
-            adj[v].Add(edge);
+            double d = GetDistance(w, v);
+            DirectedWeightedEdge edge1 = new DirectedWeightedEdge(v, w, d);
+            DirectedWeightedEdge edge2 = new DirectedWeightedEdge(w, v, d);
+            adj[v].Add(edge1);
+            adj[w].Add(edge2);
         }
 
         public int ColumnCount
@@ -107,6 +109,11 @@ namespace PathFinding
         public int VertexCount
         {
             get { return V; }
+        }
+
+        public List<DirectedWeightedEdge> Adj(int v)
+        {
+            return adj[v];
         }
 
 
