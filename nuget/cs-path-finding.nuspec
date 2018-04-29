@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>cs-path-finding</id>
+    <version>1.0.1</version>
+    <authors>cschen1205</authors>
+    <owners>cschen1205</owners>
+    <licenseUrl>https://github.com/cschen1205/cs-path-finding/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/cschen1205/cs-path-finding</projectUrl>
+    <iconUrl>https://rawgit.com/cschen1205/cs-path-finding/master/icon.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dijstra and Astar Path Finding</description>
+    <releaseNotes>Dijstra and Astar Path Finding in .NET 4.6.1</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Dijstra, Astar, Path-Finding, c-sharp</tags>
+    <dependencies>
+      
+    </dependencies>
+  </metadata>
+</package>
