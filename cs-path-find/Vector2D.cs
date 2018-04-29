@@ -238,4 +238,189 @@ namespace PathFinding
             return String.Format("({0},{1})", x, z);
         }
     }
+
+    public class IntVec2
+    {
+        //protected IntVec3 mPoint = new IntVec3();
+        int mX;
+        int mZ;
+        public IntVec2()
+        {
+            mX = 0;
+            mZ = 0;
+        }
+        public IntVec2(int _x, int _z)
+        {
+            mX = _x;
+            mZ = _z;
+        }
+
+
+        public int Length
+        {
+            get
+            {
+                return (int)Math.Sqrt(mX * mX + mZ * mZ);
+            }
+        }
+
+        public int SquaredLength
+        {
+            get
+            {
+                return mX * mX + mZ * mZ;
+            }
+        }
+
+        public int Radian
+        {
+            get
+            {
+                //return Geometry.PolarAngle(this);
+                return (int)System.Math.Atan2(mZ, mX);
+            }
+        }
+
+        public int dotProduct(IntVec2 rhs)
+        {
+            return mX * rhs.x + mZ * rhs.z;
+        }
+
+        public static int dotProduct(IntVec2 lhs, IntVec2 rhs)
+        {
+            return lhs.x * rhs.x + lhs.z * rhs.z;
+        }
+
+        public int CrossLength(IntVec2 v)
+        {
+            return Math.Abs(x * v.z - z * v.x);
+        }
+
+        public static IntVec2 operator -(IntVec2 lhs)
+        {
+            IntVec2 result = lhs.Clone();
+            result.x *= -1;
+            result.z *= -1;
+            return result;
+        }
+
+        public int z
+        {
+            set
+            {
+                mZ = value;
+            }
+            get
+            {
+                return mZ;
+            }
+        }
+
+        public int x
+        {
+            get
+            {
+                return mX;
+            }
+            set
+            {
+                mX = value;
+            }
+        }
+
+        public virtual IntVec2 Clone()
+        {
+            return new IntVec2(mX, mZ);
+        }
+
+        public int GetDistanceTo(IntVec2 pt)
+        {
+            int dx = pt.x - mX;
+            int dz = pt.z - mZ;
+            return (int)System.Math.Sqrt(dx * dx + dz * dz);
+        }
+
+        public int GetDistanceSqTo(IntVec2 pt)
+        {
+            int dx = pt.x - mX;
+            int dz = pt.z - mZ;
+            return dx * dx + dz * dz;
+        }
+
+        public static IntVec2 operator *(IntVec2 lhs, int scale)
+        {
+            IntVec2 result = lhs.Clone();
+            result.x *= scale;
+            result.z *= scale;
+            return result;
+        }
+
+        public static IntVec2 operator *(int scale, IntVec2 rhs)
+        {
+            IntVec2 result = rhs.Clone();
+            result.x *= scale;
+            result.z *= scale;
+            return result;
+        }
+
+        public static IntVec2 operator -(IntVec2 lhs, IntVec2 rhs)
+        {
+            IntVec2 result = lhs.Clone();
+            result.x -= rhs.x;
+            result.z -= rhs.z;
+            return result;
+        }
+
+        public static IntVec2 operator +(IntVec2 lhs, IntVec2 rhs)
+        {
+            IntVec2 result = lhs.Clone();
+            result.x += rhs.x;
+            result.z += rhs.z;
+            return result;
+        }
+
+        public int Normalize()
+        {
+            int length = Length;
+            if (length == 0)
+            {
+                return 0;
+            }
+            mX /= length;
+            mZ /= length;
+            return length;
+        }
+
+        public IntVec2 Rotate(int radian)
+        {
+            double cosine = System.Math.Cos(radian);
+            double sine = System.Math.Sin(radian);
+            IntVec2 result = new IntVec2();
+            result.x = (int)(x * cosine - z * sine);
+            result.z = (int)(x * sine + z * cosine);
+
+            return result;
+        }
+
+        public IntVec2 Assign(IntVec2 rhs)
+        {
+            if (this == rhs) return this;
+            x = rhs.x;
+            z = rhs.z;
+            return this;
+        }
+
+        public static int SidenessTest(IntVec2 A, IntVec2 B, IntVec2 C)
+        {
+            int result = (B.x - A.x) * (C.z - A.z) - (B.z - A.z) * (C.x - A.x);
+            if (result == 0) return 0;
+            else if (result > 0) return 1;
+            else return -1;
+        }
+
+        public override String ToString()
+        {
+            return String.Format("({0},{1})", x, z);
+        }
+    }
 }

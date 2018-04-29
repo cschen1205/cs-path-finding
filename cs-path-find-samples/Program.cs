@@ -11,12 +11,12 @@ namespace PathFinding
         static void Main(string[] args)
         {
             Random random = new Random();
-            QuadTree world = new QuadTree(new Rectangle(0, 0, 2000, 2000));
+            QuadTree space = new QuadTree(new Rectangle(0, 0, 2000, 2000));
 
             List<IAgent> population = new List<IAgent>();
             for (int i = 0; i < 10000; ++i)
             {
-                IAgent agent = new SimpleAgent(world);
+                IAgent agent = new SimpleAgent(space);
                 float y = 0; // vertical position
                 float x = random.Next(2000);
                 float z = random.Next(2000);
@@ -26,7 +26,7 @@ namespace PathFinding
 
             for (int steps = 0; steps < 20; ++steps)
             {
-                List<IAgent> agentsWithinRectangle = world.Query(new Rectangle(200, 200, 800, 800));
+                List<IAgent> agentsWithinRectangle = space.Query(new Rectangle(200, 200, 800, 800));
                 Thread.Sleep(100);
 
                 Console.WriteLine("There are {0} agents in rectangel (200, 200, 800, 800) at step {1}",

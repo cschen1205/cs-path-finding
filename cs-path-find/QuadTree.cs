@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -16,8 +17,26 @@ namespace PathFinding
 
         public QuadTree(Rectangle bound)
         {
+            Debug.Assert(bound.Top == 0);
+            Debug.Assert(bound.Left == 0);
             m_rectangle = bound;
             m_root = new QuadTreeNode(m_rectangle);
+        }
+
+        public int Width
+        {
+            get
+            {
+                return (int)m_rectangle.Right;
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return (int)m_rectangle.Bottom;
+            }
         }
 
         public List<IAgent> OutOfBoundList()
