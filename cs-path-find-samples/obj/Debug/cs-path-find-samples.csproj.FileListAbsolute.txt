@@ -1,0 +1,8 @@
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\bin\Debug\cs-path-find-samples.exe.config
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\bin\Debug\cs-path-find-samples.exe
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\bin\Debug\cs-path-find-samples.pdb
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\bin\Debug\cs-path-find.dll
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\bin\Debug\cs-path-find.pdb
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\obj\Debug\cs-path-find-samples.csprojResolveAssemblyReference.cache
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\obj\Debug\cs-path-find-samples.exe
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find-samples\obj\Debug\cs-path-find-samples.pdb

@@ -13,9 +13,11 @@ namespace PathFinding
         private bool[] marked;
         private double[] cost;
         private IndexMinPQ<double> pq;
+        private GridWorld world;
 
         public Dijstra(GridWorld G, int s)
         {
+            world = G;
             this.s = s;
             int V = G.VertexCount;
             marked = new bool[V];
@@ -77,6 +79,33 @@ namespace PathFinding
                 path.Push(edgeTo[x]);
             }
             return path;
+        }
+
+        public IEnumerable<DirectedWeightedEdge> PathTo(FVec3 position)
+        {
+            int v = world.GetVertex(position.ToFVec2());
+            return PathTo(v);
+        }
+
+        public List<FVec3> GetPath(IAgent agent)
+        {
+            FVec3 position = agent.Position;
+            return GetPath(position);
+        }
+
+        public List<FVec3> GetPath(FVec3 position) { 
+            int last = -1;
+            List<FVec3> result = new List<FVec3>();
+            foreach(var e in PathTo(position)){
+                int v = e.From();
+                last = e.To();
+                result.Add(world.GetPosition(v).ToFVec3());
+            }
+            if(last != -1)
+            {
+                result.Add(world.GetPosition(last).ToFVec3());
+            }
+            return result;
         }
     }
 }

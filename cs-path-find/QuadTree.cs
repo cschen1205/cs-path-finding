@@ -17,8 +17,6 @@ namespace PathFinding
 
         public QuadTree(Rectangle bound)
         {
-            Debug.Assert(bound.Top == 0);
-            Debug.Assert(bound.Left == 0);
             m_rectangle = bound;
             m_root = new QuadTreeNode(m_rectangle);
         }

@@ -143,6 +143,11 @@ namespace PathFinding
             }
         }
 
+        internal FVec3 ToFVec3()
+        {
+            return new FVec3(x, 0, z);
+        }
+
         public virtual FVec2 Clone()
         {
             return new FVec2(mX, mZ);

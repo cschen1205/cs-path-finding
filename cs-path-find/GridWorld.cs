@@ -33,6 +33,7 @@ namespace PathFinding
 
             V = resolution.x * resolution.z;
             s = new int[V];
+            adj = new List<DirectedWeightedEdge>[V];
             for(int i=0; i < V; ++i)
             {
                 s[i] = i;
@@ -75,14 +76,8 @@ namespace PathFinding
 
         private double GetDistance(int v, int w)
         {
-            int z_v = v / colCount;
-            int x_v = v - z_v * colCount;
-
-            int z_w = w / colCount;
-            int x_w = w - z_w * colCount;
-
-            FVec2 vv = new FVec2(xInterval * x_v, zInterval * z_v);
-            FVec2 vw = new FVec2(xInterval * x_w, zInterval * z_w);
+            FVec2 vv = GetPosition(v);
+            FVec2 vw = GetPosition(w);
             return vv.GetDistanceTo(vw);
         }
 
@@ -116,7 +111,32 @@ namespace PathFinding
             return adj[v];
         }
 
+        public FVec2 GetPosition(int v)
+        {
+            int z_v = (int)(Math.Floor((double)v / colCount));
+            int x_v = v - z_v * colCount;
 
+            return new FVec2(xInterval * x_v, zInterval * z_v);
+        }
+
+        public int GetVertex(FVec2 position)
+        {
+            int x = (int)(position.x / xInterval);
+            int z = (int)(position.z / zInterval);
+
+            if (x < 0) x = 0;
+            if (x >= colCount) x = colCount - 1;
+            if (z < 0) z = 0;
+            if (z >= RowCount) z = rowCount - 1;
+
+            return z * colCount + x;
+        }
+
+        public Dijstra dijstra(FVec2 target)
+        {
+            int s = GetVertex(target);
+            return new Dijstra(this, s);
+        }
 
     }
 

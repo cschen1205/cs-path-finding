@@ -1,0 +1,4 @@
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find\bin\Debug\cs-path-find.dll
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find\bin\Debug\cs-path-find.pdb
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find\obj\Debug\cs-path-find.dll
+C:\Users\chen0\git-cs\cs-path-find\cs-path-find\obj\Debug\cs-path-find.pdb

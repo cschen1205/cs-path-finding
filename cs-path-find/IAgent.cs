@@ -12,11 +12,18 @@ namespace PathFinding
         protected int agentID = -1;
 
         private QuadTree mSpace;
+        private GridWorld mPathFinder;
 
         public QuadTree Space
         {
             get { return mSpace; }
             set { mSpace = value; }
+        }
+
+        public GridWorld PathFinder
+        {
+            get { return mPathFinder; }
+            set { mPathFinder = value; }
         }
 		
         /// <summary>
